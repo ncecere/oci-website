@@ -212,8 +212,8 @@ function ForPeople() {
         }
         bullets={[
           <>
-            <Strong>Reasoning levels</Strong> (Instant, Low, Medium, High) on models that offer them, within what your
-            role allows.
+            <Strong>Your own defaults:</Strong> a default model and reasoning level (Instant, Low, Medium, High) that
+            follow you to every device, within what your role allows.
           </>,
           <>
             <Strong>Edit, retry and fork</Strong> without losing anything: retried replies stay one click away, and
@@ -225,11 +225,11 @@ function ForPeople() {
           </>,
           <>
             <Strong>Search</Strong> finds a conversation by its title or by what was said in it, and opens it at the
-            matching message.
+            matching message. Rename conversations, and jump around with keyboard shortcuts.
           </>,
           <>
             <Strong>Long conversations</Strong> are summarised in the background instead of cut off. Nothing is deleted,
-            and nothing waits for a summary.
+            nothing waits for a summary, and a summary you asked for that fails says why.
           </>,
         ]}
         media={<Shots slots={["phone-chat"]} />}
@@ -255,6 +255,9 @@ function ForPeople() {
             With an embeddings model configured, search is <Strong>meaning-based</Strong> as well as keyword-based, with
             optional reranking. Unrelated questions add no passages.
           </>,
+          <>
+            Replies show <Strong>which passages they used</Strong>, and you can leave chosen files out of a message.
+          </>,
           <>Each project expands to its five most recent conversations, with the rest one click away.</>,
         ]}
         media={<Shots slots={["projects-sidebar"]} />}
@@ -267,7 +270,8 @@ function ForPeople() {
         lead={
           <p>
             HTML pages, SVG images, Mermaid diagrams and documents from replies are kept as versioned artifacts. While a
-            model writes one, you watch it arrive; on wide screens it opens in a panel beside the conversation.
+            model writes one, you watch it arrive; on wide screens it opens in a panel beside the conversation that you
+            can resize.
           </p>
         }
         bullets={[
@@ -279,10 +283,10 @@ function ForPeople() {
             HTML and SVG run in a <Strong>sandboxed frame with no network access</Strong>, also on share links.
           </>,
           <>
-            <Strong>Export</Strong> a reply or a document as DOCX, PDF, XLSX or PPTX.
+            <Strong>Export</Strong> a reply or a document as DOCX, PDF, XLSX or PPTX. PDFs carry the fonts they need for
+            every common script, including Chinese, Japanese, Korean, Arabic and Hebrew.
           </>,
         ]}
-        note={<>Exported PDFs cover Latin scripts only in {site.version}; wider script support is planned for v0.10.</>}
         media={<Shots slots={["artifact-panel"]} />}
       />
 
@@ -341,7 +345,8 @@ function ForPeople() {
           </>,
           <>
             <Strong>Share links</Strong> publish a read-only view of a conversation, live or as a snapshot, with an
-            optional expiry. Reasoning and attachments stay private, and deleting the link stops it working at once.
+            optional expiry. Reasoning and attachments stay private, and one page lists every link you have made, to
+            revoke any of them at once.
           </>,
           <>
             <Strong>Export everything</Strong> as a zip of Markdown, JSON, attached files and memory notes, and import
@@ -349,6 +354,9 @@ function ForPeople() {
           </>,
           <>
             <Strong>Devices:</Strong> see where you are signed in, and sign out one device or all the others.
+          </>,
+          <>
+            <Strong>Delete your own account</Strong>, where your institution allows it for your role.
           </>,
         ]}
         media={<Shots slots={["settings-customization"]} />}
@@ -382,7 +390,8 @@ function ForAdministrators() {
         bullets={[
           <>
             <Strong>Per-role features:</Strong> web search, attachments, share links, temporary chats, branching,
-            projects, memory, artifacts, tools and reasoning levels. The server enforces them, not just the interface.
+            projects, memory, artifacts, self-service account deletion, tools and reasoning levels. The server enforces
+            them, not just the interface.
           </>,
           <>
             <Strong>Rate limits</Strong> (concurrent replies, messages and uploads per minute) and a{" "}
@@ -390,10 +399,14 @@ function ForAdministrators() {
           </>,
           <>
             <Strong>Models:</Strong> connect OpenAI, Anthropic, Google or any OpenAI-compatible server, then choose which
-            models join the catalog and which roles see each one.
+            models join the catalog, which roles see each one, and each model&apos;s context window and output limit.
           </>,
           <>
             An <Strong>auditor</Strong> role can open every administration page and change nothing.
+          </>,
+          <>
+            <Strong>Web search</Strong> through a provider you choose, with a fallback provider for when it is slow or
+            down.
           </>,
         ]}
         media={<Shots slots={["admin-overview-setup", "admin-roles-access"]} />}
@@ -424,7 +437,7 @@ function ForAdministrators() {
           </>,
           <>
             Each reply reserves its share before it starts and settles afterwards, so requests sent at the same time
-            count against each other.
+            count against each other. Usage is kept, anonymised, after an account is deleted, so reports stay accurate.
           </>,
         ]}
         note={
@@ -455,21 +468,16 @@ function ForAdministrators() {
             Access-control and security events are <Strong>kept regardless of audit retention</Strong>.
           </>,
           <>
-            <Strong>Compliance export:</Strong> audit events, and optionally conversation content, written hourly or
-            daily to S3-compatible storage as verified JSON Lines, exactly once per event.
+            <Strong>Compliance export:</Strong> audit events, every deletion among them, and optionally conversation
+            content, written hourly or daily to S3-compatible storage as verified JSON Lines, exactly once per event.
           </>,
           <>
-            <Strong>Legal hold:</Strong> retention, trash purging, temporary-chat expiry and account deletion leave a
-            named person&apos;s data alone until the hold is lifted.
+            <Strong>Legal hold</Strong> covers every deletion: no retention job, purge or deletion removes a named
+            person&apos;s records until the hold is lifted.
           </>,
           <>Scheduled usage reports by email, and a versioned acceptable-use policy people accept before they start.</>,
         ]}
-        note={
-          <>
-            In {site.version}, legal hold does not yet pause project-file deletion or usage-event pruning, and deletions
-            are not exported as events. Both are planned for v0.10.
-          </>
-        }
+        note={<>A legal hold does not pause backup retention: old backups are still deleted on schedule.</>}
         media={<Shots slots={["admin-audit-log", "admin-compliance"]} />}
       />
 
@@ -496,11 +504,11 @@ function ForAdministrators() {
                 Set the instance name and short name, upload a logo, choose an accent colour (neutral, blue, violet or
                 emerald) and the default theme, and write a message for the sign-in page.
               </p>
-              <p>Announcements show a banner to everybody, for maintenance windows or news.</p>
-              <p className="text-sm">
-                A few surfaces, such as the browser tab title and emails, don&apos;t follow branding yet; making every
-                surface follow it is planned for v0.10.
+              <p>
+                Branding applies everywhere people meet it: the sign-in pages, the sidebar, browser tabs and their icon,
+                share pages, verification and password-reset emails, diagram colours and exported files.
               </p>
+              <p>Announcements show a banner to everybody, for maintenance windows or news.</p>
             </Card>
           </div>
           <div className="mx-auto mt-14 max-w-4xl">
@@ -543,8 +551,9 @@ function Operations() {
                 can be stopped, and is reconciled against what was actually saved.
               </>,
               <>
-                <Strong>Automated backups:</Strong> scheduled <code>pg_dump</code> to S3, verified by reading it back,
-                with daily and weekly retention and a manifest of attachment objects.
+                <Strong>Automated backups:</Strong> scheduled <code>pg_dump</code> to S3 with incremental, checksummed
+                copies of attachment files, verified by reading them back, with daily and weekly retention and a script
+                to restore the files.
               </>,
               <>
                 <Strong>Metrics and traces:</Strong> a Prometheus endpoint behind a token, and OpenTelemetry traces. No
@@ -560,8 +569,8 @@ function Operations() {
             ]}
           />
           <Note>
-            Backups list attachments rather than copying them in {site.version}; protect attachment storage with bucket
-            versioning or snapshots. Copying attachments is planned for v0.10.
+            Instances that set up backups before v0.10 keep listing attachments without copying them until an
+            administrator turns copying on, since the first copy can be as large as all attachment storage.
           </Note>
         </div>
         <div className="min-w-0 space-y-6">
@@ -734,14 +743,14 @@ function WhatsNext() {
           <p>The roadmap is a plan, not a promise: an item ships only when it has a design, tests and documentation.</p>
         </SectionHeading>
         <dl className="mt-10 grid gap-4 md:grid-cols-3">
-          <StatusCard title="Now: v0.10, finish and harden">
-            Close the gaps v0.9 left open before adding features: legal hold over every deletion path, deletions in the
-            compliance export, backups that copy attachments, PDF export in every script, and a resizable artifact
-            panel.
+          <StatusCard title="Now: v0.11, always on">
+            The plan: upgrades from the previous minor release with no downtime on large deployments, surviving a
+            database failover partway through, and tested rather than promised. A Helm chart, connection pooling and
+            arm64 images are planned alongside.
           </StatusCard>
-          <StatusCard title="Next: v0.11, always on">
-            Upgrades from the previous minor release with no downtime, surviving a database failover partway through,
-            and tested rather than promised. A Helm chart and connection pooling are planned alongside.
+          <StatusCard title="Later: v1.0 and beyond">
+            Planned after that: assistants, code execution, deep research, image generation, voice, groups and finer
+            roles, and multi-factor authentication for local accounts.
           </StatusCard>
           <StatusCard title="Today: pre-1.0">
             {site.version} is the current release. Expect changes between minor releases: take a backup and read the

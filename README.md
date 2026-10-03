@@ -2,7 +2,7 @@
 
 The landing page for [Open Chat Interface (OCI)](https://github.com/ncecere/open-chat-interface), a self-hosted, open-source (MIT), multi-model AI chat application for institutions: many models behind one accessible interface, under the institution's own sign-in, budgets, retention and audit log. The site is served at https://oci.bitop.dev; the documentation lives in its own repository and site, https://docs.oci.bitop.dev.
 
-It's one long page plus a 404 page, with no pricing, sign-up, forms, cookies, tracking or third-party requests. The text describes OCI **v0.9.1** and is checked against that release's README, ROADMAP ("Who OCI is for", "What OCI does well"), CHANGELOG and the user and administrator guides in `docs/`. `lib/site.ts` holds the version, the release day (the footer and sitemap show it) and the release links.
+It's one long page plus a 404 page, with no pricing, sign-up, forms, cookies, tracking or third-party requests. The text describes OCI **v0.10.0** and is checked against that release's README, ROADMAP ("Who OCI is for", "What OCI does well"), CHANGELOG and the user and administrator guides in `docs/`. `lib/site.ts` holds the version, the release day (the footer and sitemap show it) and the release links.
 
 **Naming.** "OCI" is also Oracle Cloud Infrastructure and the Open Container Initiative, so the page leads with "Open Chat Interface" (title, hero, metadata) and uses "OCI" only as a short form after it. The text names no competing products, and examples use generic names (Example University, "Chat model"). `scripts/postbuild.mjs` fails the build if the page uses a forbidden name.
 
