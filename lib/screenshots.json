@@ -1,0 +1,44 @@
+{
+  "phone-chat": {
+    "src": "/images/phone-chat.webp",
+    "width": 720,
+    "height": 1465,
+    "interim": true
+  },
+  "settings-customization": {
+    "src": "/images/settings-customization.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  },
+  "admin-overview-setup": {
+    "src": "/images/admin-overview-setup.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  },
+  "admin-model-catalog": {
+    "src": "/images/admin-model-catalog.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  },
+  "admin-roles-access": {
+    "src": "/images/admin-roles-access.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  },
+  "admin-usage-overview": {
+    "src": "/images/admin-usage-overview.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  },
+  "admin-audit-log": {
+    "src": "/images/admin-audit-log.webp",
+    "width": 1440,
+    "height": 900,
+    "interim": true
+  }
+}
