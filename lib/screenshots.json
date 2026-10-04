@@ -1,44 +1,62 @@
 {
+  "chat-answer-reasoning": {
+    "src": "/images/chat-answer-reasoning.webp",
+    "width": 1440,
+    "height": 900
+  },
   "phone-chat": {
     "src": "/images/phone-chat.webp",
     "width": 720,
-    "height": 1465,
-    "interim": true
+    "height": 1558
+  },
+  "projects-sidebar": {
+    "src": "/images/projects-sidebar.webp",
+    "width": 1440,
+    "height": 900
+  },
+  "artifact-panel": {
+    "src": "/images/artifact-panel.webp",
+    "width": 1440,
+    "height": 900
   },
   "settings-customization": {
     "src": "/images/settings-customization.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
   },
   "admin-overview-setup": {
     "src": "/images/admin-overview-setup.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
   },
   "admin-model-catalog": {
     "src": "/images/admin-model-catalog.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
   },
   "admin-roles-access": {
     "src": "/images/admin-roles-access.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
+  },
+  "usage-budgets": {
+    "src": "/images/usage-budgets.webp",
+    "width": 1440,
+    "height": 900
   },
   "admin-usage-overview": {
     "src": "/images/admin-usage-overview.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
   },
   "admin-audit-log": {
     "src": "/images/admin-audit-log.webp",
     "width": 1440,
-    "height": 900,
-    "interim": true
+    "height": 900
+  },
+  "admin-compliance": {
+    "src": "/images/admin-compliance.webp",
+    "width": 1440,
+    "height": 900
   }
 }

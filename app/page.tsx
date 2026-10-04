@@ -207,7 +207,8 @@ function ForPeople() {
         lead={
           <p>
             Pick a model for each conversation; everything else works the same whichever you choose. Replies stream as
-            they are written, and a model&apos;s reasoning shows live in a short window, then folds away.
+            they are written. A model&apos;s reasoning and tool steps gather in one block above the answer that names
+            the current step and shows the latest reasoning live, then folds away to a one-line summary.
           </p>
         }
         bullets={[

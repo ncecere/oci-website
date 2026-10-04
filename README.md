@@ -2,7 +2,7 @@
 
 The landing page for [Open Chat Interface (OCI)](https://github.com/ncecere/open-chat-interface), a self-hosted, open-source (MIT), multi-model AI chat application for institutions: many models behind one accessible interface, under the institution's own sign-in, budgets, retention and audit log. The site is served at https://oci.bitop.dev; the documentation lives in its own repository and site, https://docs.oci.bitop.dev.
 
-It's one long page plus a 404 page, with no pricing, sign-up, forms, cookies, tracking or third-party requests. The text describes OCI **v0.10.0** and is checked against that release's README, ROADMAP ("Who OCI is for", "What OCI does well"), CHANGELOG and the user and administrator guides in `docs/`. `lib/site.ts` holds the version, the release day (the footer and sitemap show it) and the release links.
+It's one long page plus a 404 page, with no pricing, sign-up, forms, cookies, tracking or third-party requests. The text describes OCI **v0.10.1** and is checked against that release's README, ROADMAP ("Who OCI is for", "What OCI does well"), CHANGELOG and the user and administrator guides in `docs/`. `lib/site.ts` holds the version, the release day (the footer and sitemap show it) and the release links.
 
 **Naming.** "OCI" is also Oracle Cloud Infrastructure and the Open Container Initiative, so the page leads with "Open Chat Interface" (title, hero, metadata) and uses "OCI" only as a short form after it. The text names no competing products, and examples use generic names (Example University, "Chat model"). `scripts/postbuild.mjs` fails the build if the page uses a forbidden name.
 
@@ -42,25 +42,26 @@ npm run og       # rebuild the Open Graph card and icons
 
 Commit the results (`public/images/`, `lib/screenshots.json`, `public/og.png`, icons). Screenshots come from the fictional Example University set in `../oci-assets/screenshots/` (see its `MANIFEST.md`); set `SCREENSHOTS_DIR` to read from another directory. For each slot the script looks for `file` (or the slot's own name) and, if that's missing, the slot's `interimFile`, recording `"interim": true` in `lib/screenshots.json`. When the final set arrives, check each slot's alt text and caption against its image.
 
-### Interim images
+### Current set
 
-Until the Example University set exists, seven slots use screenshots from OCI's own documentation (`open-chat-interface/docs/images`, a fictional demo instance), only where they show what the slot describes:
+All twelve slots use the Example University set captured on 2026-10-03 (OCI v0.10.0 and v0.10.1; see `../oci-assets/screenshots/MANIFEST.md`). Where a slot shows the same view as a docs-site capture, `file` in `lib/slots.json` names that capture rather than keeping a second copy:
 
-```sh
-SCREENSHOTS_DIR=../open-chat-interface/docs/images npm run images
-```
+| Slot | File |
+|---|---|
+| `chat-answer-reasoning` | `chat-answer-reasoning.png` (the hero, website only; `public/og.png` is drawn from it) |
+| `phone-chat` | `phone-chat-home.png` (390x844 at 2x) |
+| `projects-sidebar` | `sidebar-projects.png` |
+| `settings-customization` | `settings-customization.png` |
+| `admin-overview-setup` | `admin-overview.png` |
+| `admin-model-catalog` | `admin-models.png` |
+| `admin-roles-access` | `admin-roles.png` |
+| `usage-budgets` | `admin-usage-budgets.png` |
+| `admin-usage-overview` | `admin-usage-overview.png` (the Overview tab; the docs use the Spend tab) |
+| `admin-audit-log` | `admin-audit-log.png` |
+| `admin-compliance` | `admin-compliance.png` |
+| `artifact-panel` | `artifact-panel-docked.png` |
 
-| Slot | Interim source | Notes |
-|---|---|---|
-| `phone-chat` | `mobile-chat-home.png` | 1082x2202; the final set's phone files are 390x844 |
-| `settings-customization` | `user-settings-customization.png` | |
-| `admin-overview-setup` | `admin-overview.png` | |
-| `admin-model-catalog` | `admin-models.png` | shows a model named "Demo research assistant" |
-| `admin-roles-access` | `admin-roles.png` | |
-| `admin-usage-overview` | `admin-usage.png` | |
-| `admin-audit-log` | `admin-audit.png` | |
-
-Still placeholders (no matching documentation screenshot): `chat-answer-reasoning` (hero), `projects-sidebar`, `artifact-panel`, `usage-budgets`, `admin-compliance`. Running the script against `../oci-assets/screenshots` replaces the interim images and removes any the new set lacks.
+No slot uses an interim image or a placeholder. The hero and `artifact-panel` were captured on OCI v0.10.1, which gathers a reply's reasoning and tool steps into one block; after replacing either, run `npm run images` and `npm run og`.
 
 ## Local development
 
@@ -106,4 +107,4 @@ Dependabot opens one grouped pull request a week each for npm, GitHub Actions an
 
 - **Code:** MIT, see [`LICENSE`](LICENSE).
 - **Website text:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), see [`LICENSE-CONTENT`](LICENSE-CONTENT).
-- Interim screenshots come from the Open Chat Interface repository (MIT). Inter is under the SIL Open Font License 1.1.
+- Screenshots are of the fictional Example University demo instance, from `oci-assets`. Inter is under the SIL Open Font License 1.1.

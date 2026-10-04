@@ -1,4 +1,4 @@
-const tag = "https://github.com/ncecere/open-chat-interface/blob/v0.10.0";
+const tag = "https://github.com/ncecere/open-chat-interface/blob/v0.10.1";
 
 export const site = {
   name: "Open Chat Interface",
@@ -11,10 +11,10 @@ export const site = {
     "Open Chat Interface (OCI) is a self-hosted, open-source (MIT) AI chat application for institutions: many models behind one interface, under your own sign-in, budgets, retention and audit log.",
   docsUrl: "https://docs.oci.bitop.dev",
   repoUrl: "https://github.com/ncecere/open-chat-interface",
-  version: "v0.10.0",
+  version: "v0.10.1",
   // The release day of `version` (the footer and the sitemap show it).
   releaseDate: "2026-10-03",
-  releaseNotesUrl: "https://docs.oci.bitop.dev/docs/releases/v0-10-0",
+  releaseNotesUrl: "https://docs.oci.bitop.dev/docs/releases/v0-10-1",
   changelogUrl: `${tag}/CHANGELOG.md`,
   licenseUrl: `${tag}/LICENSE`,
   securityUrl: `${tag}/SECURITY.md`,

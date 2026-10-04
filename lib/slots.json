@@ -1,58 +1,62 @@
 {
   "chat-answer-reasoning": {
-    "alt": "A conversation in Open Chat Interface: the person's question, a collapsed \"Reasoning\" line above the reply, a reply with a numbered list and a code block, and the composer with the model picker set to \"Chat model\".",
-    "caption": "A reply with its reasoning folded above it. While a model thinks, a short window shows its latest reasoning."
+    "alt": "A conversation in Open Chat Interface: the person's question about the moles in 12.5 g of calcium carbonate, a collapsed \"Reasoning\" line above the reply, a reply with three numbered steps and a Python code block, and the composer with the model picker set to \"Chat model\" at High.",
+    "caption": "A reply with the model's work folded into one block above it. While a model works, the block names the current step and shows its latest reasoning."
   },
   "phone-chat": {
-    "alt": "Open Chat Interface on a phone: the greeting \"How can I help you, Administrator?\", the message box with an attach button, the model picker and the send button, and buttons for the sidebar, search and a new chat at the top.",
+    "file": "phone-chat-home",
+    "alt": "Open Chat Interface on a phone: the greeting \"How can I help you, Priya?\", the message box with an add button, the model picker set to \"Fast model\" and the send button, and buttons for the sidebar, search and a new chat at the top.",
     "caption": "On a phone, the sidebar becomes a panel and the composer's controls fold behind one button.",
-    "interimFile": "mobile-chat-home",
     "shape": "phone"
   },
   "projects-sidebar": {
-    "alt": "The sidebar with a Projects heading: one project expanded to its five most recent conversations and \"Show all\", a collapsed second project, then the Pinned, Today and Older lists.",
+    "file": "sidebar-projects",
+    "alt": "The sidebar with a Projects heading: one project expanded to its five most recent conversations and \"Show all\", two collapsed projects, then the Pinned and Today lists, beside an open conversation.",
     "caption": "Project conversations live under their project in the sidebar. Each project has its own instructions and files."
   },
   "artifact-panel": {
-    "alt": "A reply that created a document artifact, with the artifact docked beside the conversation: the panel header with its title and version, preview and source views, and buttons to copy, download and open it full screen.",
+    "file": "artifact-panel-docked",
+    "alt": "A reply that created an HTML artifact, its work block folded to \"Thought \u00b7 created an artifact\" above the artifact's card, with the artifact docked beside the conversation: the panel header with its title and version, Copy, Download, full screen and Close, Preview, Source and Versions, and the rendered course timeline.",
     "caption": "Artifacts open in a docked panel beside the conversation, with versions, the source and a full-screen view."
   },
   "settings-customization": {
-    "alt": "Settings, Customization: fields for what the assistant should call you and what you do, the chosen traits \"concise\" and \"technical\", and a box for anything else it should know, beside a profile card, a Usage Limits card and the keyboard shortcuts.",
-    "caption": "Settings: personalise replies, choose the appearance, see your limits, and manage history, attachments and devices.",
-    "interimFile": "user-settings-customization"
+    "file": "settings-customization",
+    "alt": "Settings, Customization: fields for what the assistant should call you and what you do, the chosen trait \"concise\", and a box for anything else it should know, beside a profile card, a Usage Limits card and the keyboard shortcuts.",
+    "caption": "Settings: personalise replies, choose the appearance, see your limits, and manage history, attachments and devices."
   },
   "admin-overview-setup": {
-    "alt": "The administration Overview: a setup checklist with 5 of 6 required steps complete, \"Set up email delivery\" marked Needs attention, optional items for web search, an acceptable use policy and Redis, and totals for users, threads, messages and storage.",
-    "caption": "The setup checklist shows what is still missing, in order, with a link to each page that fixes it.",
-    "interimFile": "admin-overview"
+    "file": "admin-overview",
+    "alt": "The administration Overview: a setup checklist with 5 of 6 required steps complete, \"Set up email delivery\" marked Needs attention, optional items for web search and an acceptable use policy, and totals for users, threads, messages and storage.",
+    "caption": "The setup checklist shows what is still missing, in order, with a link to each page that fixes it."
   },
   "admin-model-catalog": {
-    "alt": "Providers & Models, Models tab: the default model chosen from a menu, and the model catalog with an enabled model tagged Vision.",
-    "caption": "Providers hold the credentials. You choose which of their models join the catalog, and which roles see each one.",
-    "interimFile": "admin-models"
+    "file": "admin-models",
+    "alt": "Providers & Models, Models tab: \"Chat model\" chosen as the default model, and the model catalog with Chat model and Fast model, each with its provider, upstream model, capability tags and an enabled switch.",
+    "caption": "Providers hold the credentials. You choose which of their models join the catalog, and which roles see each one."
   },
   "admin-roles-access": {
-    "alt": "Roles & access with the User role selected: 8 people with this role, 1 of 1 models visible, and switches for web search, file attachments, share links, temporary chats, branching and projects.",
-    "caption": "Roles & access: one page per role for its models, features, rate limits, storage and budgets.",
-    "interimFile": "admin-roles"
+    "file": "admin-roles",
+    "alt": "Roles & access with the User role selected: 8 people with this role, 2 of 2 models visible, and switches for web search, file attachments, share links, temporary chats, branching and projects.",
+    "caption": "Roles & access: one page per role for its models, features, rate limits, storage and budgets."
   },
   "usage-budgets": {
+    "file": "admin-usage-budgets",
     "alt": "Usage budgets: a monthly cost policy scoped to one model and applied to the User role, and a rolling message policy applied to the Restricted role.",
     "caption": "Budgets in messages, tokens or cost, over rolling or calendar windows, scoped to models and applied to roles."
   },
   "admin-usage-overview": {
+    "file": "admin-usage-overview",
     "alt": "Usage over the last 30 days: counts of conversations, messages sent, people active and attachments, a bar chart of messages per day, and feature-use counts, with tabs for spend, limits and storage.",
-    "caption": "Usage shows counts and totals per person, model and feature. Nothing on it reads conversation content.",
-    "interimFile": "admin-usage"
+    "caption": "Usage shows counts and totals per person, model and feature. Nothing on it reads conversation content."
   },
   "admin-audit-log": {
-    "alt": "The audit log: a search box, action and time filters, an Export button, and a table of sign-in events with their time, actor, action and target.",
-    "caption": "The audit log records administrative and sign-in events, failures included, and exports to CSV.",
-    "interimFile": "admin-audit"
+    "file": "admin-audit-log",
+    "alt": "The audit log in an auditor's read-only view: a search for \"auth.\", action and time filters, an Export button, and a table of sign-in and session events with their time, actor, action and target.",
+    "caption": "The audit log records administrative and sign-in events, failures included, and exports to CSV."
   },
   "admin-compliance": {
-    "alt": "Data & storage, Compliance: a scheduled compliance export to an S3-compatible bucket, with Include conversation content switched off and the last run's result, and a list of legal holds naming one person.",
+    "file": "admin-compliance",
+    "alt": "Data & storage, Compliance: a legal hold on one person with its matter reference, and the history of compliance export runs to an S3-compatible bucket, each verified.",
     "caption": "Compliance export writes audit events, and optionally content, to S3 as JSON Lines. Legal holds pause retention and deletion."
   }
 }
