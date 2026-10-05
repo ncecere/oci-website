@@ -523,12 +523,18 @@ function ForAdministrators() {
 
 /* -------------------------------------------------------- Operations */
 
-const scaleExample = `# once, before the rollout
-docker compose run --rm migrate
+const upgradeExample = `# what the upgrade involves (changes nothing)
+docker compose --profile tools run --rm migrate \\
+  node dist/scripts/upgrade-check.js
 
-# then start the replicas
-RUN_MIGRATIONS=false docker compose up -d \\
-  --no-build --scale api=3`;
+# pre-deploy migrations, while the old release serves
+docker compose --profile tools run --rm migrate
+
+# replace the API replicas
+RUN_MIGRATIONS=false docker compose up -d --no-build
+
+# once every replica runs the new release
+docker compose --profile tools run --rm migrate-post`;
 
 function Operations() {
   return (
@@ -544,8 +550,18 @@ function Operations() {
           <CheckList
             items={[
               <>
-                <Strong>Migrations run once, under a lock.</Strong> The API applies them on boot behind a PostgreSQL
-                advisory lock, so replicas can start together; or give schema changes their own job.
+                <Strong>Upgrades without downtime.</Strong> Fast pre-deploy migrations, index builds after every replica
+                runs the new release, and backfills in small batches while {site.shortName} serves. A preflight says
+                whether an upgrade can be rolling. CI upgrades from the previous minor release under load.
+              </>,
+              <>
+                <Strong>Replicas drain.</Strong> A replica that is stopped lets the replies it is writing finish, then
+                saves anything left as interrupted, with Retry.
+              </>,
+              <>
+                <Strong>Failover-tested.</Strong> Every pull request drops database connections mid-migration, mid-job
+                and mid-reply, and kills a Redis primary under Sentinel mid-reply; a weekly drill fails over a
+                three-node Patroni cluster under load.
               </>,
               <>
                 <Strong>Replies survive reloads.</Strong> A reply keeps streaming through a disconnect or a page reload,
@@ -557,30 +573,41 @@ function Operations() {
                 to restore the files.
               </>,
               <>
+                <Strong>Kubernetes with Helm:</Strong> a chart with migration hooks, draining, disruption budgets and Pod
+                Security &ldquo;restricted&rdquo;. Images for linux/amd64 and linux/arm64.
+              </>,
+              <>
                 <Strong>Metrics and traces:</Strong> a Prometheus endpoint behind a token, and OpenTelemetry traces. No
-                conversation content in either.
+                conversation content in either. Published service objectives, with alert rules and a Grafana dashboard.
               </>,
               <>
                 <Strong>Webhooks</Strong> post selected audit events to your HTTPS endpoints, signed with HMAC-SHA256 and
                 retried, with a delivery log.
               </>,
               <>
-                <Strong>System health</Strong> shows whether each dependency answers, plus background jobs and storage.
+                <Strong>System health</Strong> shows whether each dependency answers, plus background jobs, pending
+                upgrade work, background migrations and read-only maintenance mode.
+              </>,
+              <>
+                <Strong>Measured at size.</Strong> A scale harness in the repository runs weekly in CI; v0.11 was
+                measured with it at 6,000 people and 4 million messages.
               </>,
             ]}
           />
           <Note>
-            Instances that set up backups before v0.10 keep listing attachments without copying them until an
-            administrator turns copying on, since the first copy can be as large as all attachment storage.
+            The upgrade, failover and scale tests run on one machine with everything in Docker, not on a production
+            cluster: rehearse on your own before relying on them. Backups are a <code>pg_dump</code>, which suits small
+            and medium databases.
           </Note>
         </div>
         <div className="min-w-0 space-y-6">
-          <CodeBlock label="Scale the API: migrate once, then start replicas">{scaleExample}</CodeBlock>
+          <CodeBlock label="Upgrade without downtime: check, migrate, replace replicas, then post-deploy">{upgradeExample}</CodeBlock>
           <div className="rounded-card border border-brand-border bg-brand-surface p-6">
             <p className="text-sm font-semibold text-brand-text">Before you run more than one replica</p>
             <ul className="mt-3 space-y-2 text-sm text-brand-muted">
               <li>Use S3-compatible storage, so every replica sees every attachment.</li>
-              <li>Connect Redis, so rate limits and stream recovery work across replicas.</li>
+              <li>Connect Redis: it is required, so rate limits and stream recovery work across replicas.</li>
+              <li>Optionally, move background jobs to a worker container, and put PgBouncer in front of PostgreSQL.</li>
               <li>No sticky sessions are needed: sessions are signed cookies and streams resume through Redis.</li>
             </ul>
             <p className="mt-4 text-sm">
@@ -673,7 +700,7 @@ docker compose logs api     # shows the one-time admin password`;
 
 const requirements = [
   "PostgreSQL 17 (pgvector optional, for meaning-based project search)",
-  "Redis: recommended, and needed for more than one API replica",
+  "Redis: recommended, and required for more than one API replica (one server, Sentinel or Cluster)",
   "S3-compatible storage, for more than one API replica, backups and compliance export",
   "A model provider: OpenAI, Anthropic, Google, or an OpenAI-compatible gateway",
   "Optionally an OIDC or SAML identity provider, and SMTP for email",
@@ -744,10 +771,10 @@ function WhatsNext() {
           <p>The roadmap is a plan, not a promise: an item ships only when it has a design, tests and documentation.</p>
         </SectionHeading>
         <dl className="mt-10 grid gap-4 md:grid-cols-3">
-          <StatusCard title="Now: v0.11, always on">
-            The plan: upgrades from the previous minor release with no downtime on large deployments, surviving a
-            database failover partway through, and tested rather than promised. A Helm chart, connection pooling and
-            arm64 images are planned alongside.
+          <StatusCard title="Shipped: v0.11, always on">
+            Upgrades from the previous minor release with no downtime, replicas that drain, PostgreSQL and Redis
+            failover, a Helm chart, connection pooling and arm64 images, each tested in CI. Backups for large clusters
+            with their own backup tools move to the next release.
           </StatusCard>
           <StatusCard title="Later: v1.0 and beyond">
             Planned after that: assistants, code execution, deep research, image generation, voice, groups and finer
