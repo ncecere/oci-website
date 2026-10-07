@@ -696,6 +696,7 @@ APP_URL=http://localhost:8080
 INITIAL_ADMIN_EMAIL=admin@example.edu
 EOF
 docker compose up -d --build
+docker compose --profile tools run --rm migrate-post   # once: indexes, background migrations
 docker compose logs api     # shows the one-time admin password`;
 
 const requirements = [
