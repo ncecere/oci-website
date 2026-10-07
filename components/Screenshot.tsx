@@ -1,6 +1,7 @@
 import screenshots from "@/lib/screenshots.json";
 import slots from "@/lib/slots.json";
 import { Image as ImageIcon } from "./icons";
+import { ScreenshotZoom } from "./ScreenshotZoom";
 
 export type SlotName = keyof typeof slots;
 
@@ -22,6 +23,8 @@ type Props = {
  * (public/images/<slot>.webp, listed in lib/screenshots.json), it renders the
  * image with its intrinsic size; otherwise a clearly marked placeholder that
  * names the file it expects. Phone slots render narrower, at a phone's shape.
+ * An available image opens enlarged on click (ScreenshotZoom, the only client
+ * component here); the <img> itself is still rendered on the server.
  */
 export function Screenshot({ slot, priority = false, caption = true, className = "" }: Props) {
   const meta = allSlots[slot];
@@ -36,16 +39,24 @@ export function Screenshot({ slot, priority = false, caption = true, className =
         }`}
       >
         {shot ? (
-          <img
+          <ScreenshotZoom
             src={shot.src}
             width={shot.width}
             height={shot.height}
             alt={meta.alt}
-            loading={priority ? "eager" : "lazy"}
-            fetchPriority={priority ? "high" : "auto"}
-            decoding="async"
-            className="block h-auto w-full"
-          />
+            caption={caption ? meta.caption : undefined}
+          >
+            <img
+              src={shot.src}
+              width={shot.width}
+              height={shot.height}
+              alt={meta.alt}
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : "auto"}
+              decoding="async"
+              className="block h-auto w-full"
+            />
+          </ScreenshotZoom>
         ) : (
           <div
             role="img"
