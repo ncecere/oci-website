@@ -26,7 +26,7 @@
   },
   "admin-overview-setup": {
     "file": "admin-overview",
-    "alt": "The administration Overview: a setup checklist with 5 of 6 required steps complete, \"Set up email delivery\" marked Needs attention, optional items for web search and an acceptable use policy, and totals for users, threads, messages and storage.",
+    "alt": "The administration Overview: a setup checklist with 5 of 6 required steps complete, \"Set up email delivery\" marked Needs attention, optional items for web search and an acceptable use policy, and totals for users, conversations, messages and storage.",
     "caption": "The setup checklist shows what is still missing, in order, with a link to each page that fixes it."
   },
   "admin-model-catalog": {
@@ -41,7 +41,7 @@
   },
   "usage-budgets": {
     "file": "admin-usage-budgets",
-    "alt": "Usage budgets: a monthly cost policy scoped to one model and applied to the User role, and a rolling message policy applied to the Restricted role.",
+    "alt": "Usage budgets: a monthly cost budget scoped to one model and applied to the User role, and a daily message budget applied to the Restricted role.",
     "caption": "Budgets in messages, tokens or cost, over rolling or calendar windows, scoped to models and applied to roles."
   },
   "admin-usage-overview": {
