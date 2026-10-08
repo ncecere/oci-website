@@ -74,7 +74,7 @@ const pillars: { icon: ReactNode; title: string; body: string }[] = [
   {
     icon: <Server className="size-5" />,
     title: "Your sign-in, your data",
-    body: "OIDC and SAML single sign-on, with roles mapped from your identity provider. Conversations, files and logs stay in your own database and storage; prompts go only to the model providers you connect.",
+    body: "OpenID Connect single sign-on, with roles mapped from your identity provider. Conversations, files and logs stay in your own database and storage; prompts go only to the model providers you connect.",
   },
   {
     icon: <Accessibility className="size-5" />,
@@ -488,9 +488,9 @@ function ForAdministrators() {
             Single sign-on, models and branding
           </h3>
           <div className="grid gap-8 lg:grid-cols-2">
-            <Card id="feature-sso" eyebrow="Single sign-on" title="OIDC and SAML, with roles from your directory">
+            <Card id="feature-sso" eyebrow="Single sign-on" title="OpenID Connect, with roles from your directory">
               <p>
-                Connect OIDC or SAML identity providers natively. Accounts are created at first sign-in, optionally limited
+                Connect OpenID Connect identity providers natively. Accounts are created at first sign-in, optionally limited
                 to the email domains you allow.
               </p>
               <p>
@@ -704,7 +704,7 @@ const requirements = [
   "Redis: recommended, and required for more than one API replica (one server, Sentinel or Cluster)",
   "S3-compatible storage, for more than one API replica, backups and compliance export",
   "A model provider: OpenAI, Anthropic, Google, or an OpenAI-compatible gateway",
-  "Optionally an OIDC or SAML identity provider, and SMTP for email",
+  "Optionally an OIDC identity provider, and SMTP for email",
 ];
 
 function SelfHost() {
