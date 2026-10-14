@@ -225,8 +225,8 @@ function ForPeople() {
             <Strong>temporary chats</Strong> that stay out of your history and expire.
           </>,
           <>
-            <Strong>Search</Strong> finds a conversation by its title or by what was said in it, and opens it at the
-            matching message. Rename conversations, and jump around with keyboard shortcuts.
+            <Strong>Search</Strong> finds a conversation by its title or by what was said in it, ignoring capitals and
+            accents, and opens it at the matching message. Rename conversations, and jump around with keyboard shortcuts.
           </>,
           <>
             <Strong>Long conversations</Strong> are summarised in the background instead of cut off. Nothing is deleted,
@@ -570,7 +570,8 @@ function Operations() {
               <>
                 <Strong>Automated backups:</Strong> scheduled <code>pg_dump</code> to S3 with incremental, checksummed
                 copies of attachment files, verified by reading them back, with daily and weekly retention and a script
-                to restore the files.
+                to restore the files. A cluster that already backs up PostgreSQL itself can turn the database dump off
+                and keep the attachment backups.
               </>,
               <>
                 <Strong>Kubernetes with Helm:</Strong> a chart with migration hooks, draining, disruption budgets and Pod
@@ -596,8 +597,8 @@ function Operations() {
           />
           <Note>
             The upgrade, failover and scale tests run on one machine with everything in Docker, not on a production
-            cluster: rehearse on your own before relying on them. Backups are a <code>pg_dump</code>, which suits small
-            and medium databases.
+            cluster: rehearse on your own before relying on them. By default, backups are a <code>pg_dump</code>, which
+            suits small and medium databases; larger clusters can use their own backups instead.
           </Note>
         </div>
         <div className="min-w-0 space-y-6">
