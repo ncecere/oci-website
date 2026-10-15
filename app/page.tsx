@@ -260,6 +260,10 @@ function ForPeople() {
             Replies show <Strong>which passages they used</Strong>, and you can leave chosen files out of a message.
           </>,
           <>Each project expands to its five most recent conversations, with the rest one click away.</>,
+          <>
+            <Strong>Share a project</Strong> with a person or a group as a viewer or an editor. People you share with use
+            its instructions and files in their own conversations, which stay private to them.
+          </>,
         ]}
         media={<Shots slots={["projects-sidebar"]} />}
       />
@@ -359,6 +363,13 @@ function ForPeople() {
           <>
             <Strong>Delete your own account</Strong>, where your institution allows it for your role.
           </>,
+          <>
+            <Strong>Languages:</Strong> English, plus Spanish and Arabic (both beta, machine-drafted) with a
+            right-to-left layout, when an administrator turns them on.
+          </>,
+          <>
+            <Strong>Install it</Strong> as an app from the browser, from Settings. There is no offline mode.
+          </>,
         ]}
         media={<Shots slots={["settings-customization"]} />}
       />
@@ -408,6 +419,15 @@ function ForAdministrators() {
           <>
             <Strong>Web search</Strong> through a provider you choose, with a fallback provider for when it is slow or
             down.
+          </>,
+          <>
+            <Strong>Groups</Strong> of people can carry their own budgets and model access, and managers you appoint add
+            people to their own groups and see nothing else. A group only adds access, never takes it away.
+          </>,
+          <>
+            <Strong>Data classes</Strong> label projects, connectors and conversations, and keep labelled content away
+            from models you have not approved for them (warn, or block). It is not data-loss prevention: copying text out
+            of OCI is not controlled.
           </>,
         ]}
         media={<Shots slots={["admin-overview-setup", "admin-roles-access"]} />}
@@ -499,6 +519,11 @@ function ForAdministrators() {
                 no rule are refused with a message you write.
               </p>
               <p>Local email and password accounts, invitations and email verification are there when you need them.</p>
+              <p>
+                <Strong>Two-step verification</Strong> for local accounts: an authenticator app with recovery codes, or
+                passkeys. An administrator can require it per role, with a grace period. People who sign in through single
+                sign-on are not asked, because their identity provider decides.
+              </p>
             </Card>
             <Card id="feature-branding" eyebrow="Branding" title="Your name, your logo, your colours">
               <p>
@@ -648,7 +673,11 @@ function AccessibleAndOpen() {
               </p>
               <p>Colours are chosen for contrast first, including destructive buttons.</p>
             </div>
-            <Note>A published accessibility conformance report, backed by a manual audit, is on the roadmap.</Note>
+            <Note>
+              A conformance report is published (WCAG 2.2 A and AA, VPAT 2.5 layout). It is a self-assessment by the
+              project, not a third-party audit, and most criteria are still marked as not yet evaluated: a manual review
+              and more automation are planned before v1.0.0.
+            </Note>
           </article>
           <article id="open-source" aria-labelledby="open-source-title" className="min-w-0 scroll-mt-20 rounded-card border border-brand-border bg-brand-surface p-6 sm:p-8">
             <Eyebrow>Open source</Eyebrow>
@@ -773,14 +802,15 @@ function WhatsNext() {
           <p>The roadmap is a plan, not a promise: an item ships only when it has a design, tests and documentation.</p>
         </SectionHeading>
         <dl className="mt-10 grid gap-4 md:grid-cols-3">
-          <StatusCard title="Shipped: v0.11, always on">
+          <StatusCard title="Shipped: v0.11 to v0.14">
             Upgrades from the previous minor release with no downtime, replicas that drain, PostgreSQL and Redis
-            failover, a Helm chart, connection pooling and arm64 images, each tested in CI. Backups for large clusters
-            with their own backup tools move to the next release.
+            failover, a Helm chart, connection pooling and arm64 images, each tested in CI. Backups for clusters with
+            their own backup tools, accent-insensitive search, and in v0.14 two-step verification, data classification,
+            groups and shared projects, interface languages, an installable app and the accessibility report.
           </StatusCard>
           <StatusCard title="Later: v1.0 and beyond">
-            Planned after that: assistants, code execution, deep research, image generation, voice, groups and finer
-            roles, and multi-factor authentication for local accounts.
+            Planned after that: assistants, code execution, deep research, image generation, voice, custom roles, and a
+            manual accessibility review.
           </StatusCard>
           <StatusCard title="Today: pre-1.0">
             {site.version} is the current release. Expect changes between minor releases: take a backup and read the
